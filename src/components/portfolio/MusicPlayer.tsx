@@ -7,8 +7,8 @@ const fmt = (s: number) =>
   !isFinite(s) ? "0:00" : `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
 
 export function MusicPlayer({
-  music, muted, started,
-}: { music: PortfolioData["music"]; muted: boolean; started: boolean }) {
+  music, muted, started, mini = false,
+}: { music: PortfolioData["music"]; muted: boolean; started: boolean; mini?: boolean }) {
   const audio = useRef<HTMLAudioElement | null>(null);
   const [idx, setIdx] = useState(0);
   const [playing, setPlaying] = useState(false);

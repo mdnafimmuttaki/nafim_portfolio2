@@ -7,7 +7,7 @@ function hexToRgb(hex: string) {
   return m.slice(0, 3).map((x) => parseInt(x, 16)).join(",");
 }
 
-export function Particles({ kind, density = 1, color = "#ffffff" }: { kind: ParticleKind; density?: number; color?: string }) {
+export function Particles({ kind, density = 1, color = "#ffffff" }: { kind: ParticleKind; density?: number | undefined; color?: string | undefined }) {
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     if (kind === "none") return;

@@ -95,3 +95,36 @@
     font-family: var(--font-sans);
   }
 }
+
+@utility text-gradient {
+  background: linear-gradient(90deg, var(--glow), var(--glow-2, var(--glow)), var(--glow));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 4s linear infinite;
+}
+
+@utility ring-pulse {
+  background: var(--glow);
+  animation: pulse-glow 2.4s ease-in-out infinite;
+}
+
+@utility card-solid {
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-glass);
+}
+
+@utility card-outline {
+  background: transparent;
+  border: 1px solid color-mix(in oklab, var(--glow) 55%, transparent);
+  box-shadow: 0 0 30px -10px var(--glow);
+  backdrop-filter: blur(4px);
+}
+
+@keyframes shine { to { background-position: 200% center; } }
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--glow) 60%, transparent); }
+  50% { box-shadow: 0 0 24px 6px color-mix(in oklab, var(--glow) 50%, transparent); }
+}

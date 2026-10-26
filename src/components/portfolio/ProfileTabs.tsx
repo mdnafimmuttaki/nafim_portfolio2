@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
-import type { PortfolioData } from "@/lib/portfolio";
+import { widgetsOf, type PortfolioData } from "@/lib/portfolio";
 
 type Tab = "about" | "skills" | "projects" | "guestbook";
 

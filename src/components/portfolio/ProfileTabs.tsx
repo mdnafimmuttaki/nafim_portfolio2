@@ -3,16 +3,18 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import type { PortfolioData } from "@/lib/portfolio";
 
-type Tab = "about" | "skills" | "projects";
+type Tab = "about" | "skills" | "projects" | "guestbook";
 
-export function ProfileTabs({ data, about }: { data: PortfolioData; about: ReactNode }) {
+export function ProfileTabs({ data, about, guestbook }: { data: PortfolioData; about: ReactNode; guestbook?: ReactNode }) {
   const [tab, setTab] = useState<Tab>("about");
+  const w = widgetsOf(data);
   const skills = (data.skills ?? []).filter((s) => s.name);
   const projects = (data.projects ?? []).filter((p) => p.title);
   const tabs: { id: Tab; label: string; show: boolean }[] = [
     { id: "about", label: "About", show: true },
-    { id: "skills", label: "Skills", show: skills.length > 0 },
-    { id: "projects", label: "Projects", show: projects.length > 0 },
+    { id: "skills", label: "Skills", show: w.showSkills && skills.length > 0 },
+    { id: "projects", label: "Projects", show: w.showProjects && projects.length > 0 },
+    { id: "guestbook", label: "Guestbook", show: w.showGuestbook && !!guestbook },
   ];
   const visible = tabs.filter((t) => t.show);
   const groups = skills.reduce<Record<string, string[]>>((acc, s) => {

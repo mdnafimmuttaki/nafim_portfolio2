@@ -366,7 +366,7 @@ function GuestbookAdmin() {
   }, []);
   const del = async (id: string) => {
     const { error } = await supabase.from("guestbook").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setRows((r) => r.filter((x) => x.id !== id));
     toast.success("Message removed.");
   };
